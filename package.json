@@ -1,0 +1,31 @@
+{
+    "name": "demo-app",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite --mode sit",
+        "build": "vue-tsc --noEmit && vite build",
+        "preview": "vite preview",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "coverage": "vitest run --coverage"
+    },
+    "dependencies": {
+        "axios": "^0.27.2",
+        "vue": "^3.2.37",
+        "vue-router": "4",
+        "vuex": "^4.0.2"
+    },
+    "devDependencies": {
+        "@testing-library/vue": "^6.6.1",
+        "@vitejs/plugin-vue": "^3.0.2",
+        "axios-mock-adapter": "^1.21.2",
+        "sass": "^1.54.4",
+        "typescript": "^4.6.4",
+        "vite": "^3.0.6",
+        "vite-plugin-checker": "^0.4.9",
+        "vitest": "^0.21.1",
+        "vue-tsc": "^0.39.5"
+    }
+}
