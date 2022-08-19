@@ -18,8 +18,8 @@ export default defineConfig(() => {
         },
         test: {
             globals: true,
-            // mockRestore: true,
-            // clearMocks: true
+            mockReset: true,
+            clearMocks: true
         }
     }
 })

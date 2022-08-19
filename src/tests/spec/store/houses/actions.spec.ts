@@ -18,12 +18,6 @@ describe.only('Test actions of house module', () => {
 
         await actions[ACTIONS.GET_HOUSE_DETAILS](injectee)
 
-        // expect(commitSpy).toHaveBeenCalledWith(MUTAIONS.SET_HOUSE_DETAILS, houseDetails)
-        expect(1).toBe(1)
-    })
-
-    it('a', () => {
-        // expect(commitSpy).toHaveBeenCalledWith(MUTAIONS.SET_HOUSE_DETAILS, houseDetails)
-        expect(1).toBe(1)
+        expect(commitSpy).toHaveBeenCalledWith(MUTAIONS.SET_HOUSE_DETAILS, houseDetails)
     })
 })
