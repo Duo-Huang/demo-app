@@ -8,18 +8,12 @@ const { ACTIONS, MUTAIONS } = STORE
 
 const commitSpy = vi.fn()
 
-const injectee = createActionContext({
-    commit: commitSpy
-})
-
 describe.only('Test actions of house module', () => {
-
+    const injectee = createActionContext<AppState.Houses, AppState.RootState>({
+        commit: commitSpy,
+    })
 
     it('getHouseDetails', async () => {
-        const injectee = createActionContext<AppState.Houses, AppState.RootState>({
-            commit: commitSpy
-        })
-
         vi.spyOn(houses, 'getHouseDetails').mockResolvedValue(houseDetails) // Stub data accsess
 
         await actions[ACTIONS.GET_HOUSE_DETAILS](injectee)
