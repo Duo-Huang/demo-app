@@ -3,7 +3,7 @@ console.log(import.meta.env.APP_API_BASE_URL)
 </script>
 
 <template>
-    <div>hello world</div>
+    <router-view></router-view>
 </template>
 
 <style scoped lang="scss"></style>

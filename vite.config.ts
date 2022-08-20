@@ -9,6 +9,7 @@ export default defineConfig(() => {
             vue(),
             // checker({ typescript: true })
         ],
+        base: './',
         envDir: './env',
         envPrefix: "APP",
         resolve: {
