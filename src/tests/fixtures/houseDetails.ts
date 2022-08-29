@@ -1,6 +1,6 @@
-import { HouseDetails } from '@/types/houses'
+import { HouseDetails, PostedHouseInfo } from '@/types/houses'
 
-export const houseDetails: AppResponse<HouseDetails> = {
+export const houseDetails: AppHttp.Response<HouseDetails> = {
     code: 0,
     message: '',
     data: {
@@ -16,6 +16,7 @@ export const houseDetails: AppResponse<HouseDetails> = {
             address: '和平村地铁站E口',
             structure: '2室1厅1厨1卫',
             facility: ['电视机', '冰箱', '洗衣机', '热水器', '空调'],
+            img: ['https://img1.png', 'https://img2.png', 'https://img3.png', 'https://img4.png'],
         },
         communityInfo: {
             name: '世纪花园',
@@ -26,5 +27,18 @@ export const houseDetails: AppResponse<HouseDetails> = {
                 electricityFee: 0.5,
             },
         },
+    },
+}
+
+export const postedHouseInfo: AppHttp.Response<PostedHouseInfo> = {
+    code: 0,
+    message: '',
+    data: {
+        address: 'fasdf',
+        city: 'fsadf',
+        community: 'asf',
+        expectPrice: 0,
+        phone: 'asdf',
+        rentType: 0,
     },
 }

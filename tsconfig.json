@@ -16,7 +16,7 @@
         "paths": {
             "@/*": ["src/*"]
         },
-        "types": ["vitest/globals"]
+        "types": ["vitest/globals", "element-plus/global"] // 第二个配合Volar (vscode)插件使用, 可在模版中提示类型
     },
     "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
     "references": [{ "path": "./tsconfig.node.json" }]

@@ -1,20 +1,28 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
+import axios, { AxiosResponse, AxiosError } from 'axios'
+import { errorProcessing, useRetry } from './interceptors'
 
 const http = axios.create({
     baseURL: import.meta.env.APP_API_BASE_URL,
-    timeout: 6000,
+    timeout: 5000,
+    validateStatus: (status) => status >= 200 && status < 400,
 })
 
-type ReqConfig = Omit<AxiosRequestConfig, 'url' | 'params' | 'data'> & { ignoreGlobalErrorMsg: boolean } // 可以针对单个api做全局错误处理的忽略，注意忽略全局错误处理后，需要在调用的地方自己处理异常
+useRetry(http, {
+    retries: 3,
+    retryDelay: (retryCount) => retryCount * 200,
+    // retryCondition: (err) => !!err.response && err.response.status > 400,
+    retryCondition: false,
+})
+// useError(http) // 每次retry都会触发，不是很友好，暂时不以拦截器方式使用
 
-const xhr = <T>({ url, ...options }: AxiosRequestConfig) =>
+type ReqConfig = Omit<AppHttp.RequestConfig, 'url' | 'params' | 'data'>
+
+const xhr = <T>(reqConfig: AppHttp.RequestConfig) =>
     http
-        .request({ url, ...options })
-        .then((res: AxiosResponse<AppResponse<T>>) => {
-            return Promise.resolve(res.data)
-        })
-        .catch((err) => {
-            return Promise.reject(err)
+        .request(reqConfig)
+        .then((res: AxiosResponse<AppHttp.Response<T>>) => Promise.resolve(res.data))
+        .catch((err: AxiosError<AppHttp.Response<any>>) => {
+            return errorProcessing(err) // 重试后统一处理一次
         })
 
 const factory = () => {
@@ -24,6 +32,7 @@ const factory = () => {
                 ...config,
                 url,
                 params,
+                method: 'GET',
             })
         },
         post<T>(url: string, data = {}, config?: ReqConfig) {
@@ -31,6 +40,7 @@ const factory = () => {
                 ...config,
                 url,
                 data,
+                method: 'POST',
             })
         },
     }

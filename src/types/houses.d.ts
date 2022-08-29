@@ -1,5 +1,8 @@
+type RentType = 0 | 1
+type Payment = 0 | 1 | 2 | 3
+
 export interface HouseDetails {
-    rentType: 0 | 1
+    rentType: RentType
     payment: {
         payType: 0 | 1 | 2 | 3
         price: number
@@ -11,6 +14,7 @@ export interface HouseDetails {
         address: string
         structure: string
         facility: string[]
+        img: string[]
     },
     communityInfo: {
         name: string
@@ -21,4 +25,13 @@ export interface HouseDetails {
             electricityFee: 0.5
         }
     }
+}
+
+export interface PostedHouseInfo {
+    city: string
+    community: string
+    address: string
+    expectPrice: number
+    rentType: RentType
+    phone: string
 }

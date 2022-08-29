@@ -1,5 +1,5 @@
 import { Mutation } from 'vuex'
-import { STORE } from '@/constants/index'
+import { STORE } from '@/constants'
 
 const { MUTAIONS } = STORE
 

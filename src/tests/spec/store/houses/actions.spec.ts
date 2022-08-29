@@ -1,8 +1,8 @@
-import { houses } from '@/data-access/index'
-import { STORE } from '@/constants/index'
+import { houses } from '@/data-access'
+import { STORE } from '@/constants'
 import { houseDetails } from '@/tests/fixtures/houseDetails'
-import { createActionContext } from '@/tests/utils/index'
-import { actions } from '@/store/houses/index'
+import { createActionContext } from '@/tests/utils'
+import { actions } from '@/store/houses'
 
 const { ACTIONS, MUTAIONS } = STORE
 
@@ -16,7 +16,7 @@ describe.only('Test actions of house module', () => {
     it('getHouseDetails', async () => {
         vi.spyOn(houses, 'getHouseDetails').mockResolvedValue(houseDetails) // Stub data accsess
 
-        await actions[ACTIONS.GET_HOUSE_DETAILS](injectee)
+        await actions[ACTIONS.GET_HOUSE_DETAILS](injectee, '1')
 
         expect(commitSpy).toHaveBeenCalledWith(MUTAIONS.SET_HOUSE_DETAILS, houseDetails)
     })
